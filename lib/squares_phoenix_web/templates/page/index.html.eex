@@ -1,0 +1,44 @@
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#">Perfect Squares & Concurrency</a></h1>
+		</div>
+	</div>
+</div>
+<div id="page-wrapper">
+	<div id="welcome" class="container">
+		<%# <div class="title">
+			<h2>Solve a math problem with a varying number of concurrent nodes.</h2>
+		</div> %>
+		<p>----------------</p>
+    <br>
+	</div>
+</div>
+
+<div>
+  Amount (N): <input id="amount" type="number" name="amount"><br><br>
+  Length (k): <input id="length" type="number" name="length"><br><br>
+  <br>
+  <input id="compute" type="submit" value=" Compute ">
+  <br><br>
+  <div id="returns"></div>
+</div> 
+<div id="chart">
+  <canvas id="square-chart" height="400" width="800"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+</div>
+
+<br>
+
+<div id="copyright" class="container">
+	<p>Design based on Original CSS by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+  <p>Released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license.<p> 
+</div>
+
+
+
+
+
+
+
+
