@@ -18,12 +18,16 @@ defmodule SquaresPhoenixWeb.SquaresChannel do
     n = String.to_integer n
     k = String.to_integer k
 
+    # Times: array of times
+    # results: array of pairs {base, sumofsquares}
     {times, results} = loop([n, k], 0, [], [], [])
+    {bases, squares} = Enum.unzip(results)
 
     # Times should be of length n
     broadcast!(socket, "return", %{
       times: times,
-      results: results
+      bases: bases,
+      squares: squares
     })
     {:noreply, socket}
   end

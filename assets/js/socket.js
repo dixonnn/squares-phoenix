@@ -15,7 +15,8 @@ let channel = socket.channel("squares:lobby", {})
 let amount = document.querySelector("#amount")
 let length = document.querySelector("#length")
 let computeButton = document.querySelector("#compute")
-let returnContainer = document.querySelector("#returns")
+let basesContainer = document.querySelector("#bases")
+let squaresContainer = document.querySelector("#squares")
 
 // document.getElementById("compute").style.visibility = "hidden"
 
@@ -39,8 +40,10 @@ channel.on("return", payload => {
   // Chart times[] vs. array Workers[] = [1..times.length]
 
   // Display Results before chart
-  var resultsList = payload.results
-  returnContainer.innerText = resultsList
+  var bases = payload.bases
+  var squares = payload.squares
+  basesContainer.innerText = bases
+  squaresContainer.innerText = squares
 
   // Create labels based on number of worker nodes returned
   var labels = Array.apply(null, {length: payload.times.length}).map(Function.call, Number)
