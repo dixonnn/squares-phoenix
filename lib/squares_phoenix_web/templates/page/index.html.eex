@@ -21,7 +21,7 @@
   <br>
   <input id="compute" type="submit" value=" Compute ">
   <br><br>
-  <div id="returns"></div>
+  <div id="returns">Results will appear here.</div>
 </div> 
 <div id="chart">
   <canvas id="square-chart" height="400" width="800"></canvas>

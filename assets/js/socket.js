@@ -38,6 +38,10 @@ channel.on("return", payload => {
   // print results[]
   // Chart times[] vs. array Workers[] = [1..times.length]
 
+  // Display Results before chart
+  var resultsList = payload.results
+  returnContainer.innerText = resultsList
+
   // Create labels based on number of worker nodes returned
   var labels = Array.apply(null, {length: payload.times.length}).map(Function.call, Number)
 
