@@ -22,7 +22,9 @@
   <input id="compute" type="submit" value=" Compute ">
   <br><br>
   <div id="bases">Results will appear here.</div>
-	<div id="squares"></div>
+	<table id="table" border="thin solid" border-collapse="collapse">
+		
+	</table>
 </div> 
 <div id="chart">
   <canvas id="square-chart" height="400" width="800"></canvas>

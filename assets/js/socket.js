@@ -16,7 +16,7 @@ let amount = document.querySelector("#amount")
 let length = document.querySelector("#length")
 let computeButton = document.querySelector("#compute")
 let basesContainer = document.querySelector("#bases")
-let squaresContainer = document.querySelector("#squares")
+let table = document.querySelector("#table")
 
 // document.getElementById("compute").style.visibility = "hidden"
 
@@ -42,8 +42,35 @@ channel.on("return", payload => {
   // Display Results before chart
   var bases = payload.bases
   var squares = payload.squares
-  basesContainer.innerText = bases
-  squaresContainer.innerText = squares
+  
+  // var th1 = document.createElement('th')
+  // var th2 = document.createElement('th')
+  // th1.innerText = "Bases"
+  // th2.innerText = "Squares"
+
+  // table.appendChild(th1)
+  // table.appendChild(th2)
+  // table.style.border = "thin solid"
+  // table.style.border-collapse
+  // for (var l = 0; l < bases.length; l++) {
+  //   var tr = document.createElement('tr')
+  //   var td1 = document.createElement('td');
+  //   var td2 = document.createElement('td');
+
+  //   var text1 = document.createTextNode(bases[l]);
+  //   var text2 = document.createTextNode(squares[l]);
+
+  //   td1.appendChild(text1);
+  //   td1.style.border = "medium solid"
+  //   td2.appendChild(text2);
+  //   td2.style.border = "medium solid"
+  //   tr.appendChild(td1);
+  //   tr.appendChild(td2);
+
+  //   table.appendChild(tr);
+  // }
+
+  // squaresContainer.appendChild(table)
 
   // Create labels based on number of worker nodes returned
   var labels = Array.apply(null, {length: payload.times.length}).map(Function.call, Number)
