@@ -20,11 +20,11 @@ Only the third list produces a perfect square, and for that reason only the pair
 NOTE: Even if the `[N, k]` pair provided by the user does not return any valid perfect sums of squares, the program will still execute and return the chart plotting the number of nodes vs. execution time.
 
 ### Example Results
-The observed pattern of performance is such that using slightly more than one thread gives better performance than using only one thread (i.e. no concurrency), but after increasing the number of workers past a certain point the elapsed time creeps back up to the level of using only one node because of the overhead of executing so many threads at once. The following example plots illustrate this pattern.
+A pattern that is commonly observed over many inputs is that using slightly more than one thread gives better performance than using only one thread. This seems obvious - splitting the work among multiple threads would make execution faster than using no concurrency at all. However, after increasing the number of workers past a certain point, the elapsed time creeps back up to the level of using only one node because of the overhead of executing so many threads at once. The following example plots illustrate this pattern.
 
 ![Plot 1 Image](assets/static/images/plot1.png)
 
-![Plot 2 Image](assets/static/images/plot1.png)
+![Plot 2 Image](assets/static/images/plot2.png)
 
 ### Running
 
