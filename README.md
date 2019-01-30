@@ -22,9 +22,9 @@ NOTE: Even if the `[N, k]` pair provided by the user does not return any valid p
 ### Example Results
 The observed pattern of performance is such that using slightly more than one thread gives better performance than using only one thread (i.e. no concurrency), but after increasing the number of workers past a certain point the elapsed time creeps back up to the level of using only one node because of the overhead of executing so many threads at once. The following example plots illustrate this pattern.
 
-![alt text](https://github.com/dixonnn/squares-phoenix/tree/master/assets/static/images/plot1.png "Plot 1")
+![Plot 1 Image](https://github.com/dixonnn/squares-phoenix/tree/master/assets/static/images/plot1.png "Plot 1")
 
-![alt text](https://github.com/dixonnn/squares-phoenix/tree/master/assets/static/images/plot2.png "Plot 1")
+![Plot 2 Image](https://github.com/dixonnn/squares-phoenix/tree/master/assets/static/images/plot2.png "Plot 1")
 
 ### Running
 
