@@ -42,6 +42,7 @@ Instructions and requirements for running Elixir and Phoenix projects [can be fo
   * Display clearly in an HTML dynamic table
 * Finish HTML: add description, instructions, color, etc.
 * Fix Up Chart.js: Axis Labels, actual [N,k] values in title
+* Add Unit Tests
 * Refactor: throw out unused code, comment, etc.
-* Refactor: Move channel methods to backend for mobile portability
+* Refactor: relocate channel methods to backend for mobile portability
 
