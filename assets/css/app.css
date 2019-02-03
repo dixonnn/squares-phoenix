@@ -7,11 +7,13 @@ body
 {
     margin: 0px;
     padding: 0px;
-    background: rgb(207, 217, 245);
+    background: rgb(255, 255, 255);
     font-family: 'Questrial', sans-serif;
     font-size: 12pt;
     color: #334467;
 }
+
+
 
 
 h1, h2, h3
@@ -21,9 +23,22 @@ h1, h2, h3
     color: #404040;
 }
 
+table, td, th, tr   
+{
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
 p, ol, ul
 {
     margin-top: 0;
+    font-size: 12pt;
+}
+
+p1
+{
+    margin-top: 0;
+    font-size: 10pt;
 }
 
 ol, ul
@@ -35,10 +50,6 @@ ol, ul
 p
 {
     line-height: 180%;
-}
-
-strong
-{
 }
 
 a
@@ -58,19 +69,97 @@ a:hover
     width: 1200px;
 }
 
-.loader {
-    border: 32px solid #f3f3f3; /* Light grey */
-    border-top: 32px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.inner-col {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.lds-spinner {
+  color: #16A085;
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-spinner div {
+  transform-origin: 32px 32px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 29px;
+  width: 5px;
+  height: 14px;
+  border-radius: 20%;
+  background: #16A085;
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
   }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  100% {
+    opacity: 0;
   }
+}
+
 
 
 /*********************************************************************************/
@@ -119,12 +208,6 @@ a:hover
             font-size: 1em;
             outline: none;
         }
-
-            form input.text:hover,
-            form select:hover,
-            form textarea:hover
-            {
-            }
 
             form input.text:focus,
             form select:focus,
@@ -210,15 +293,6 @@ a:hover
     margin: 0 auto;
     width: auto;
 }
-
-/*********************************************************************************/
-/* List Styles                                                                   */
-/*********************************************************************************/
-
-ul.style1
-{
-}
-
 
 /*********************************************************************************/
 /* Social Icon Styles                                                            */
@@ -337,14 +411,10 @@ ul.contact li a:before
 /* Logo                                                                          */
 /*********************************************************************************/
 
-#logo
-{
-}
-
 #logo h1
 {
     display: inline-block;
-    margin-bottom: 0.20em;
+    margin-bottom: 0em;
     padding: 0.20em 0.9em;
     font-size: 3.5em;
 }
@@ -352,7 +422,13 @@ ul.contact li a:before
 #logo a
 {
     text-decoration: none;
-    color: #334467;
+    color: #048b9a;
+}
+
+#logo a:hover
+{
+    text-decoration: none;
+    color: #026b7b;
 }
 
 #logo span
@@ -373,10 +449,6 @@ ul.contact li a:before
 /*********************************************************************************/
 /* Menu                                                                          */
 /*********************************************************************************/
-
-#menu
-{
-}
 
 #menu ul
 {
@@ -412,15 +484,6 @@ ul.contact li a:before
     color: #FFF;
 }
 
-
-/*********************************************************************************/
-/* Banner                                                                        */
-/*********************************************************************************/
-
-#banner
-{
-}
-
 /*********************************************************************************/
 /* Wrapper                                                                       */
 /*********************************************************************************/
@@ -442,14 +505,6 @@ ul.contact li a:before
     overflow: hidden;
     padding: 5em 0em;
     text-align: center;
-}
-
-#wrapper3
-{
-}
-
-#wrapper4
-{
 }
 
 /*********************************************************************************/
@@ -491,15 +546,11 @@ ul.contact li a:before
 /* Page                                                                          */
 /*********************************************************************************/
 
-#page-wrapper
+#page-wrapper, #spinner-box
 {
     overflow: hidden;
-    padding: 3em 0em 0em 0em;
+    padding: 0em 0em 3em 0em;
     text-align: center;
-}
-
-#page
-{
 }
 
 /*********************************************************************************/
@@ -591,10 +642,6 @@ ul.contact li a:before
 /* Portfolio                                                                     */
 /*********************************************************************************/
 
-#portfolio
-{
-}
-
 #portfolio .box
 {
     text-align: center;
@@ -638,108 +685,3 @@ ul.contact li a:before
 {
     float: right;
 }
-
-/*********************************************************************************/
-/* Three Columns                                                                 */
-/*********************************************************************************/
-
-#three-column
-{
-    overflow: hidden;
-    text-align: center;
-}
-
-#three-column h2
-{
-    margin: 1em 0em;
-    font-size: 1.5em;
-    font-weight: 700;
-}
-
-#three-column .icon
-{
-    position: relative;
-    display: block;
-    margin: 0px auto 0.80em auto;
-    background: none;
-    line-height: 150px;
-    font-size: 4em;
-    width: 150px;
-    height: 150px;
-    border-radius: 100px;
-    border: 6px solid #67128F;
-    text-align: center;
-    color: #FFF;
-    
-}
-    
-#three-column #tbox1,
-#three-column #tbox2,
-#three-column #tbox3
-{
-    float: left;
-    width: 320px;
-    padding: 80px 40px 80px 40px;
-}
-
-#three-column .title
-{
-    text-align: center;
-}
-
-#three-column .title h2
-{
-    font-size: 1.60em;
-}
-
-#three-column .title .byline
-{
-    padding-top: 0.50em;
-    font-size: 0.90em;
-    color: #858585;
-}
-
-#three-column .arrow-down
-{
-    border-top-color: #292929;
-}
-
-
-ul.tools
-{
-    margin: 0;
-    padding: 0em 0em 0em 0em;
-    list-style: none;
-}
-
-ul.tools li
-{
-    display: inline-block;
-    padding: 0em .2em;
-    font-size: 4em;
-}
-
-ul.tools li span
-{
-    display: none;
-    margin: 0;
-    padding: 0;
-}
-
-ul.tools li a
-{
-    color: #FFF;
-}
-
-ul.tools li a:before
-{
-    display: inline-block;
-    background: #1ABC9C;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    line-height: 120px;
-    text-align: center;
-    color: #FFFFFF;
-}
-

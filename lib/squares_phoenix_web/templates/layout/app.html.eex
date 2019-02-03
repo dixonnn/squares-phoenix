@@ -8,6 +8,7 @@
     <meta name="author" content="">
 
     <title>Squares</title>
+    <link rel="icon" type="image/x-icon" href="<%= static_path(@conn, "/images/favicon.ico") %>" >
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
   </head>

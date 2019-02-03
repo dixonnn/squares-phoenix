@@ -1,6 +1,3 @@
-// NOTE: The contents of this file will only be executed if
-// you uncomment its entry in "assets/js/app.js".
-
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
 import {Socket} from "phoenix"
@@ -15,8 +12,9 @@ let channel = socket.channel("squares:lobby", {})
 let amount = document.querySelector("#amount")
 let length = document.querySelector("#length")
 let computeButton = document.querySelector("#compute")
-let basesContainer = document.querySelector("#bases")
-let table = document.querySelector("#table")
+let returnTable = document.querySelector("#table")
+var spinner = document.getElementById("spinner-box")
+spinner.style.visibility = "hidden"
 
 // document.getElementById("compute").style.visibility = "hidden"
 
@@ -28,49 +26,61 @@ var chart = "";
 
 // Compute handler - send one request to channel with [N, k]
 computeButton.addEventListener("click", event => {
-  channel.push("execute", {N: amount.value, k: length.value})
+  // Check that input is right
+  if (amount.value > 0 && amount.value < 1001 && length.value > 0 && length.value < 1001) {
+    channel.push("execute", {N: amount.value, k: length.value})
+    spinner.style.visibility = "visible"
+  
+    let count = returnTable.childElementCount
+    // Also, clear old return values
+    if (count > 0) {
+      for (let i = 0; i < count + 1; i++) {
+        returnTable.removeChild(returnTable.lastElementChild)
+      }
+    }
+  } else {
+    alert("Input values must be between 1 and 1000.")
+  }
+  
 })
 
 // Listen for return from channel
 channel.on("return", payload => {
-  console.log(payload)
+  // console.log(payload)
+  spinner.style.visibility = "hidden"
 
-  // Data should be two arrays: Times[], Results[]
-  // print results[]
-  // Chart times[] vs. array Workers[] = [1..times.length]
-
-  // Display Results before chart
+  // Display Results before chart (if any are returned)
   var bases = payload.bases
   var squares = payload.squares
   
-  // var th1 = document.createElement('th')
-  // var th2 = document.createElement('th')
-  // th1.innerText = "Bases"
-  // th2.innerText = "Squares"
+  var th1 = document.createElement('th')
+  var th2 = document.createElement('th')
+  if (bases.length > 0) {
+    th1.innerText = "Bases"
+    th2.innerText = "Squares"
 
-  // table.appendChild(th1)
-  // table.appendChild(th2)
-  // table.style.border = "thin solid"
-  // table.style.border-collapse
-  // for (var l = 0; l < bases.length; l++) {
-  //   var tr = document.createElement('tr')
-  //   var td1 = document.createElement('td');
-  //   var td2 = document.createElement('td');
+    returnTable.appendChild(th1)
+    returnTable.appendChild(th2)
+    document.getElementById("bases").innerText = ""
 
-  //   var text1 = document.createTextNode(bases[l]);
-  //   var text2 = document.createTextNode(squares[l]);
+    for (var l = 0; l < bases.length; l++) {
+      var tr = document.createElement('tr')
+      var td1 = document.createElement('td');
+      var td2 = document.createElement('td');
 
-  //   td1.appendChild(text1);
-  //   td1.style.border = "medium solid"
-  //   td2.appendChild(text2);
-  //   td2.style.border = "medium solid"
-  //   tr.appendChild(td1);
-  //   tr.appendChild(td2);
+      var text1 = document.createTextNode(bases[l]);
+      var text2 = document.createTextNode(squares[l]);
 
-  //   table.appendChild(tr);
-  // }
+      td1.appendChild(text1);
+      td2.appendChild(text2);
+      tr.appendChild(td1);
+      tr.appendChild(td2);
 
-  // squaresContainer.appendChild(table)
+      table.appendChild(tr);
+    }
+  } else {
+    document.getElementById("bases").innerText = "No perfect squares found."
+  }
 
   // Create labels based on number of worker nodes returned
   var labels = Array.apply(null, {length: payload.times.length}).map(Function.call, Number)
@@ -90,9 +100,9 @@ channel.on("return", payload => {
       labels: labels,
       datasets: [{
         fill: false,
-        label: "Workers vs. Time for [N,K]",
-        borderColor: '#2662ed',
-        backgroundColor: '#65a6f0',
+        label: `Workers vs. Time for [${amount.value},${length.value}]`,
+        borderColor: '#026b7b',
+        backgroundColor: '#048b9a',
         data: payload.times,
       }]
     },
@@ -102,102 +112,33 @@ channel.on("return", payload => {
       scales: {
         yAxes: [{
           ticks: {
+            major: {
+              fontStyle: 'bold'
+            },
             beginAtZero: true
+          },
+          scaleLabel: {
+            display: true,
+            labelString: "Elapsed Time (ms)"
           }
         }],
         xAxes: [{
           ticks: {
+            major: {
+              fontStyle: 'bold'
+            },
             autoSkip: true,
             maxTicksLimit: 50
+          },
+          scaleLabel: {
+            display: true,
+            labelString: "Number of Worker Nodes"
           }
         }]
       }
     }
   })
 }) 
-
-// Split up problem and create workers in backend
-// createButton.addEventListener("click", event => {
-//   console.log(document.getElementById("returns").children)
-//   for(let j = 0; j < document.getElementById("returns").children.length; j++) {
-//     document.getElementById("returns").removeChild(document.getElementById("returns").children[j])
-//   }
-//   channel.push("split", {workers: workers.value, n: amount.value, k: length.value})
-// })
-
-// computeButton.addEventListener("click", event => {
-//   t0 = performance.now()
-//   for(let i = 0; i < data.problems.length; i++) {
-//     channel.push("compute", {problems: data.problems[i], worker: data.workers[i]})
-//   }
-//   document.getElementById("chart").style.visibility = "visible"
-// })
-
-// chartButton.addEventListener("click", event => {
-
-//   // This must be pushed at correct index in order
-//   // Use binary search
-
-//   workerLabels.push(workers.value)
-//   timeLabels.push(t1)
-//   let ctx = document.getElementById('square-chart').getContext('2d')
-//   if(chart != "") {
-//     chart.destroy()
-//   }
-//   chart = new Chart(ctx, {
-//     // The type of chart we want to create
-//     type: 'bar',
-//     responsive: true,
-//     maintainAspectRatio: false,
-  
-//     // The data for our dataset rgb(42, 170, 247) 
-//     data: {
-//       labels: workerLabels,
-//       datasets: [{
-//         fill: true,
-//         label: "Workers vs. Time for [N,K]",
-//         borderColor: '#2662ed',
-//         backgroundColor: '#65a6f0',
-//         data: timeLabels,
-//       }]
-//     },
-  
-//     // Configuration options go here
-//     options: {
-//       scales: {
-//         yAxes: [{
-//           ticks: {
-//             beginAtZero: true
-//           }
-//         }]
-//       }
-//     }
-//   })
-// })
-
-// Reload page for different variables
-// reloadButton.addEventListener("click", event => {
-//   location.reload()
-// })
-
-// Receive split problems with pids for Workers
-// channel.on("problems", payload => {
-//   console.log(payload)
-//   data = payload
-//   document.getElementById("compute").style.visibility = "visible"
-// })
-
-// Receive results from computation, send to chart
-// channel.on("results", payload => {
-//   t1 = performance.now() - t0
-
-//   let returnItem = document.createElement("li")
-//   returnItem.innerText = `${payload.perfect_squares}`
-//   returnContainer.appendChild(returnItem)
-
-//   console.log(payload.perfect_squares)
-//   console.log("Time: " + t1 + "ms")
-// })
 
 channel.join()
     .receive("ok", resp => { console.log("Joined successfully", resp) })

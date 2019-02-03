@@ -7,25 +7,37 @@
 </div>
 <div id="page-wrapper">
 	<div id="welcome" class="container">
-		<%# <div class="title">
-			<h2>Solve a math problem with a varying number of concurrent nodes.</h2>
-		</div> %>
-		<p>----------------</p>
+		<p>This app examines how concurrency can effect an Elixir program's performance 
+		while solving a math problem. Experiment with the input values below to change 
+		the size of the problem. The program will take 'N' arrays of length 'k' and 
+		compute the sum of the squares of each. Every array is an arithmetic series starting
+		at 1, 2, ... N. If the sum of squares of any of the arrays is itself a perfect square,
+		the program will return the starting and final value of that computation. </p>
     <br>
+		<p>In the back end, the program will solve the problem N times. The first 
+		iteration, only one thread will be used. The next time, two threads will split the work,
+		then three, four, and so on until N threads are utilized on the final round. Each iteration, the elapsed 
+		time to find the solution is recorded. When all of the iterations have finished, a graph is 
+		displayed plotting the number of threads versus the execution time. This illustrates a loose
+		pattern of how the number of threads affects the performance of the program.</p>
+		<br>
+		<p>Here are a few values for 'k' that produce perfect squares: 24, 49, 289. Can you find more?</p>
 	</div>
+	
 </div>
-
 <div>
-  Amount (N): <input id="amount" type="number" name="amount"><br><br>
-  Length (k): <input id="length" type="number" name="length"><br><br>
+  Amount (N): <input id="amount" type="number" name="amount" min="1" max="1000" required><br><br>
+  Length (k): <input id="length" type="number" name="length" min="1" max="1000" required><br><br>
   <br>
   <input id="compute" type="submit" value=" Compute ">
   <br><br>
   <div id="bases">Results will appear here.</div>
-	<table id="table" border="thin solid" border-collapse="collapse">
-		
-	</table>
+	<table id="table"></table>
+	<br>
 </div> 
+<div id="spinner-box">
+<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
 <div id="chart">
   <canvas id="square-chart" height="400" width="800"></canvas>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -36,12 +48,5 @@
 <div id="copyright" class="container">
 	<p>Design based on Original CSS by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
   <p>Released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license.<p> 
+	<p>Written in <a href="https://elixir-lang.org/">Elixir</a> with <a href="https://phoenixframework.org/">Phoenix</a>.</p>
 </div>
-
-
-
-
-
-
-
-
