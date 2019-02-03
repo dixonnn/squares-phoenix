@@ -15,8 +15,8 @@ use Mix.Config
 # which you typically run after static files are built.
 config :squares_phoenix, SquaresPhoenixWeb.Endpoint,
   load_from_system_env: true,
-  url: [scheme: "https", host: "evening-lake-47780.herokuapp.com", port: 443],
-force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  url: [scheme: "https", host: "sheltered-wave-25275.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
 
@@ -24,7 +24,8 @@ force_ssl: [rewrite_on: [:x_forwarded_proto]],
 config :logger, level: :info
 
 # Configure database
-config :squares_phoenix, SquaresPhoenixWeb.Repo,
+config :squares_phoenix, SquaresPhoenix.Repo,
+  adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
