@@ -85,21 +85,4 @@ defmodule SquaresPhoenixWeb.SquaresChannel do
     )
   end
 
-
-  # def handle_in("compute", %{"problems" => problems, "worker" => worker}, socket) do
-
-  #   worker_pid =
-  #   "<0." <> worker <> ".0>"
-  #   |> :erlang.binary_to_list
-  #   |> :erlang.list_to_pid
-
-  #   results = Squares.single_compute(worker_pid, problems)
-  #   if results != [] do
-  #     broadcast!(socket, "results", %{
-  #       perfect_squares: results
-  #     })
-  #   end
-  #   {:noreply, socket}
-  # end
-
 end
