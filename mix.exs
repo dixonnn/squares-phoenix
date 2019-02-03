@@ -38,7 +38,7 @@ defmodule SquaresPhoenix.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 1.0"},
-      {:squares, path: "./deps/squares"}
+      {:squares, "~> 0.1.0", path: "./deps/squares"}
     ]
   end
 end
