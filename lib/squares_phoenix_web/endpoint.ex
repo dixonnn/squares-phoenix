@@ -1,9 +1,9 @@
 defmodule SquaresPhoenixWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :squares_phoenix
 
-  socket "/socket", SquaresPhoenixWeb.UserSocket,
-    websocket: [timeout: 45_000],
-    longpoll: false
+  socket "/socket", SquaresPhoenixWeb.UserSocket
+    # websocket: [timeout: 45_000],
+    # longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
