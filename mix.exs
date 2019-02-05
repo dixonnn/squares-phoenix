@@ -5,7 +5,7 @@ defmodule SquaresPhoenix.Mixfile do
     [
       app: :squares_phoenix,
       version: "0.0.1",
-      elixir: "~> 1.4",
+      elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -38,7 +38,7 @@ defmodule SquaresPhoenix.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 1.0"},
-      {:squares, path: "./squares"}
+      {:squares, git: "https://github.com/dixonnn/squares-core.git"}
     ]
   end
 end

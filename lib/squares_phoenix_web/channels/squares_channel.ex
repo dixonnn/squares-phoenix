@@ -21,6 +21,7 @@ defmodule SquaresPhoenixWeb.SquaresChannel do
     # Times: array of times
     # results: array of pairs {base, sumofsquares}
     {times, results} = loop([n, k], 0, [], [], [])
+    # IO.inspect results
     {bases, squares} = Enum.unzip(results)
 
     # Times should be of length n
@@ -53,6 +54,8 @@ defmodule SquaresPhoenixWeb.SquaresChannel do
 
       # Append new time to `times`
       times = times ++ [Kernel./(new_time, 1_000)]
+      # IO.inspect new_time
+      # IO.inspect new_results
 
       # Set `results` to first return, then never change again
       results =
@@ -62,9 +65,9 @@ defmodule SquaresPhoenixWeb.SquaresChannel do
           results
         end
 
-      if count == 0 do
-        IO.inspect results
-      end
+      # if count == 0 do
+      #   IO.inspect results
+      # end
 
       # Call recursively
       loop([n, k], count + 1, pids, times, results)
