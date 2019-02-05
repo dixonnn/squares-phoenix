@@ -1,5 +1,6 @@
 defmodule SquaresPhoenixWeb.SquaresChannel do
   use Phoenix.Channel
+  use DynamicSupervisor
 
   def join("squares:lobby", _message, socket) do
     {:ok, socket}
