@@ -12,8 +12,8 @@ defmodule SquaresPhoenixWeb.SquaresChannel do
   def handle_in("execute", %{"N" => n, "k" => k}, socket) do
 
     # Terminate all current workers to create a new set
-    DynamicSupervisor.which_children(Squares.DynamicSupervisor)
-    |> Squares.DynamicSupervisor.terminate_children()
+    DynamicSupervisor.which_children(Squares.Parent)
+    |> Squares.Parent.terminate_children()
 
     n = String.to_integer n
     k = String.to_integer k
@@ -40,7 +40,7 @@ defmodule SquaresPhoenixWeb.SquaresChannel do
     if count < n do
 
       # Create new worker and append its pid to `pids`
-      {:ok, pid} = Squares.DynamicSupervisor.create_child(count)
+      {:ok, pid} = Squares.Parent.create_child(count)
       pids = pids ++ [pid]
 
       # Time how long it takes to call server
