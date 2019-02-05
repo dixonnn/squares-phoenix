@@ -1,6 +1,5 @@
 defmodule SquaresPhoenixWeb.SquaresChannel do
   use Phoenix.Channel
-  use Squares.Parent
 
   def join("squares:lobby", _message, socket) do
     {:ok, socket}
